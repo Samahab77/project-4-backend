@@ -1,6 +1,6 @@
 # Name of your APP
 
-
+Afaq Reader Club
 
 ## Web Application Description 
 
@@ -20,22 +20,16 @@ $npm start
 
 ---
 ## Data Modeling
-
-
-
-
-
+Reader (user)
+Blogs 
+comment
 
 ## Technologies
+node express
 
 
 
 
 ## Developers
+samah Bagido
 
-
-Collapse
-
-
-
-Message Input
