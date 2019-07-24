@@ -35,6 +35,7 @@ router.get('/blogs/:id', requireToken, (req, res, next) => {
 })
 
 //create 
+
 router.post('/blogs', requireToken, (req, res, next) => {
     req.body.blog.owner = req.user.id
     Blogs.create(req.body.blog)
@@ -57,7 +58,7 @@ router.delete('/blogs/:id', requireToken, (req, res, next) => {
  })
  //update
 
-router.put('/blogs/:d', requireToken, (req, res, next) => {
+router.put('/blogs/:id', requireToken, (req, res, next) => {
      delete req.body.blog.owner
      Blogs.findById(req.params.id)
     .then(handle404)
@@ -67,7 +68,7 @@ router.put('/blogs/:d', requireToken, (req, res, next) => {
 
     })
     
-    .then(() => res.status(204))
+    .then(() => res.sendStatus(204))
     .catch(next)    
 
  })

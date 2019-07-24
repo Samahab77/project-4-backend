@@ -1,10 +1,22 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
+  name:{
+    type:String,
+    // required: true
+  },
   email: {
     type: String,
     required: true,
     unique: true
+  },
+  city: {
+    type: String,
+    //  required: true,
+
+  },
+  phone_num:{
+    type: Number,
   },
   hashedPassword: {
     type: String,
@@ -21,11 +33,15 @@ const userSchema = new mongoose.Schema({
     }
   }
 })
-
-userSchema.virtual('blogs', {
-  ref: 'Blogs',
+userSchema.virtual('commints', {
+  ref: 'Commint',
   localField: '_id',
   foreignField: 'owner'
-});
+}),
+// userSchema.virtual('blogs', {
+//   ref: 'Blogs',
+//   localField: '_id',
+//   foreignField: 'owner'
+// });
 
 module.exports = mongoose.model('User', userSchema)

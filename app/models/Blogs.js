@@ -19,6 +19,11 @@ const blogsSchema = new mongoose.Schema({
 },{
     timestamps: true
 })
+// userSchema.virtual('commint', {
+//     ref: 'Commint',
+//     localField: '_id',
+//     foreignField: 'owner'
+// });
 
 const blogs = mongoose.model('Blogs', blogsSchema)
 
