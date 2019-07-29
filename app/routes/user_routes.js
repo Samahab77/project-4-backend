@@ -54,6 +54,7 @@ router.post('/sign-up', (req, res, next) => {
         phone_num: req.body.credentials.phone_num
       }
     })
+    
     // create user with provided email and hashed password
     .then(user => User.create(user))
     // send the new user object back with status 201, but `hashedPassword`
