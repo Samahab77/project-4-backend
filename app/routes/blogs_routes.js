@@ -23,7 +23,7 @@ router.get('/blogs', requireToken, (req, res, next) => {
 })
 //index for any user 
 
-router.get('/blogs/all', requireToken, (req, res, next) => {
+router.get('/blogs/all', (req, res, next) => {
     Blogs.find()
         .then(blogs => res.status(200).json({ blogs: blogs }))
         .catch(next)
@@ -40,6 +40,17 @@ router.get('/blogs/:id', requireToken, (req, res, next) => {
     .catch(next)
 
     })
+})
+// show 
+router.get('/blogs/all/:id', (req, res, next) => {
+    Blogs.findById(req.params.id)
+        .then(handle404)
+        .then(blog => {
+            // requireOwnership(req, blog)
+            res.status(200).json({ blog: blog.toObject() })
+                .catch(next)
+
+        })
 })
 
 //create 

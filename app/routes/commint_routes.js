@@ -15,6 +15,11 @@ router.get('/blogs/:blogs_id/comments', requireToken, (req, res, next) => {
         .catch(next)
 })
 
+router.get('/blogs/:blogs_id/commentsAll', (req, res, next) => {
+    Comment.find({ blog: req.params.blogs_id })
+        .then(comments => res.status(200).json({ comments: comments }))
+        .catch(next)
+})
 //CREATE comments
 //  -POST  /blogs/:blogs_id/comments
 router.post('/blogs/:blogs_id/comments',requireToken,(req,res,next) => {
