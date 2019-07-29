@@ -9,6 +9,7 @@ const blogs = require('./app/routes/blogs_routes')
 const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes')
 const commints = require('./app/routes/commint_routes')
+const adminRoutes = require('./app/routes/admin_routes')
 
 
 // require error handling middleware
@@ -70,7 +71,7 @@ app.use(blogs)
 app.use(exampleRoutes)
 app.use(userRoutes)
 app.use(commints)
-
+app.use(adminRoutes)
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be
 // passed any error messages from them
