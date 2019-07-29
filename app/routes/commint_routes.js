@@ -10,7 +10,7 @@ const requireToken = passport.authenticate('bearer', { session: false })
 const router = express.Router()
 
 router.get('/blogs/:blogs_id/comments', requireToken, (req, res, next) => {
-    Comment.find({ owner: req.user.id })
+    Comment.find({ blog: req.params.blogs_id })
         .then(comments => res.status(200).json({ comments: comments }))
         .catch(next)
 })

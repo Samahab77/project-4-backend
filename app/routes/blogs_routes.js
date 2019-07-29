@@ -14,11 +14,19 @@ const requireToken = passport.authenticate('bearer', { session: false })
 // instantiate a router (mini app that only handles routes)
 const router = express.Router()
 //index
-// git blogs 
+// git blogs for current user  
 router.get('/blogs', requireToken, (req, res, next) => {
     Blogs.find({ owner: req.user.id })
     .then(blogs => res.status(200).json({ blogs: blogs }))
     .catch(next)
+
+})
+//index for any user 
+
+router.get('/blogs/all', requireToken, (req, res, next) => {
+    Blogs.find()
+        .then(blogs => res.status(200).json({ blogs: blogs }))
+        .catch(next)
 
 })
 
