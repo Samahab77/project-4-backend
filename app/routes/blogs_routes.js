@@ -57,6 +57,7 @@ router.get('/blogs/all/:id', (req, res, next) => {
 
 router.post('/blogs', requireToken, (req, res, next) => {
     req.body.blog.owner = req.user.id
+    req.body.blog.author=req.user.email
     Blogs.create(req.body.blog)
         .then(blog => {
             res.status(201).json({ blog: blog.toObject() })
@@ -92,5 +93,7 @@ router.put('/blogs/:id', requireToken, (req, res, next) => {
 
  })
 
+
+ 
 
 module.exports = router

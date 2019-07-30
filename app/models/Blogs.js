@@ -11,6 +11,14 @@ const blogsSchema = new mongoose.Schema({
         type: String ,
         required: true
     },
+    author:{
+        type:String,
+        required:true
+    },
+    timestamps:{
+        type:String
+    } ,
+
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -25,6 +33,11 @@ const blogsSchema = new mongoose.Schema({
 //     foreignField: 'owner'
 // });
 
+// userSchema.virtual('User', {
+//   ref: 'User',
+//   localField: '_id',
+//   foreignField: 'owner'
+// });
 const blogs = mongoose.model('Blogs', blogsSchema)
 
 module.exports = blogs;
