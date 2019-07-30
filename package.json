@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",//herruko does not like nodeman
+    "start": "node server.js",
     "test": "mocha --exit",
     "server": "nodemon server.js",
     "serve": "nodemon server.js",
