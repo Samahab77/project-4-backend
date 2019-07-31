@@ -5,6 +5,11 @@ const crypto = require('crypto')
 const passport = require('passport')
 // bcrypt docs: https://github.com/kelektiv/node.bcrypt.js
 const bcrypt = require('bcrypt')
+const customErrors = require('../../lib/custom_errors')
+
+const handle404 = customErrors.handle404
+const requireOwnership = customErrors.requireOwnership
+
 
 // see above for explanation of "salting", 10 rounds is recommended
 const bcryptSaltRounds = 10
@@ -24,6 +29,29 @@ const requireToken = passport.authenticate('bearer', { session: false })
 
 // instantiate a router (mini app that only handles routes)
 const router = express.Router()
+
+// get all users
+router.get('/users', (req,res,next)=>{
+  User.find()
+  .populate('blogs')
+  .then(users=> res.status(200).json({users:users}))
+   .catch(next)
+
+})
+
+router.get('/users/:id',  (req, res, nex) => {
+  User.findById(req.params.id)
+  .populate('blogs')
+    .then(handle404)
+    .then(user => {
+      // requireOwnership(req, user)
+      console.log(user.blogs)
+      res.status(200).json({ user: user.toObject() })
+
+    })
+    .catch(nex)
+})
+
 
 // SIGN UP
 // POST /sign-up

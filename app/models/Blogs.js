@@ -38,6 +38,6 @@ const blogsSchema = new mongoose.Schema({
 //   localField: '_id',
 //   foreignField: 'owner'
 // });
-const blogs = mongoose.model('Blogs', blogsSchema)
+const Blog = mongoose.model('Blog', blogsSchema)
 
-module.exports = blogs;
+module.exports = Blog;

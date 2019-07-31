@@ -35,18 +35,29 @@ const userSchema = new mongoose.Schema({
     transform: (_doc, user) => {
       delete user.hashedPassword
       return user
-    }
+    },
+    virtuals: true
+  },
+  toJSON: {
+    virtuals: true
   }
 })
 userSchema.virtual('commints', {
   ref: 'Commint',
   localField: '_id',
   foreignField: 'owner'
-}),
-// userSchema.virtual('blogs', {
-//   ref: 'Blogs',
-//   localField: '_id',
-//   foreignField: 'owner'
-// });
+})
+
+userSchema.virtual('blogs', {
+  ref: 'Blog',
+  localField: '_id',
+  foreignField: 'owner'
+});
+
+  userSchema.virtual('book', {
+    ref: 'Book',
+    localField: '_id',
+    foreignField: 'owner'
+  })
 
 module.exports = mongoose.model('User', userSchema)
